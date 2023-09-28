@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Post
 
-def index(request):
+def blog(request):
     posts = Post.objects.all()
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'blog/blog.html', {'posts': posts})
