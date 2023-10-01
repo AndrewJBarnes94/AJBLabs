@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ project.title }}</h1>
+        
+        <h3>Field: {{ project.field.field }}</h3> <!-- Display the related ProjectField -->
+
+        <div class="project-content">
+            <!-- You can add more details, images, or anything related to the project here -->
+        </div>
+
+        <div class="project-download">
+            <a href="{{ project.code_zip.url }}" download>Download Code</a>
+        </div>
+    </div>
+{% endblock %}
