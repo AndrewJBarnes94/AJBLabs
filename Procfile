@@ -1,1 +1,1 @@
-web: gunicorn AJBLabs.wsgi
+web: gunicorn AJBLabs.wsgi --log-file -

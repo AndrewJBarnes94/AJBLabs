@@ -26,12 +26,12 @@ SECRET_KEY = 'django-insecure-p3eue)3n$uwys+7fbkzk)pzh8ac2ce5#_fp7hsg&la*)l@5444
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,6 +83,24 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+"""
+import dj_database_url
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '<database_name>',
+        'USER': '<user_name>',
+        'PASSWORD': '<password>',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+"""
 
 
 # Password validation
@@ -132,3 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'portfolio_code_zipped')
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+WHITENOISE_USE_FINDERS = True
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
