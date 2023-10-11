@@ -16,9 +16,10 @@ class ProjectField(models.Model):
         return self.field
 
 class Project(models.Model):
-    field = models.ForeignKey(ProjectField, on_delete=models.CASCADE)
+    project_field = models.ForeignKey(ProjectField, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    code_zip = models.FileField(upload_to='media/portfolio_code_zipped/')
+
+    code_download_url = models.CharField(max_length=256, null=True)
 
     def __str__(self):
         return self.title
