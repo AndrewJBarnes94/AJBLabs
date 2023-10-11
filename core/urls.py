@@ -25,9 +25,9 @@ urlpatterns = [
     path('blog/', views.blog, name='blog'),
     path('resume/', views.resume, name='resume'),
     path('about-me/', views.about_me, name='about_me'),
-    path('ambitions/', views.ambitions, name='ambitions'),
     path('contact_me/', views.contact_me, name='contact_me'),
     path('project/<int:project_id>/', views.project_detail, name='project_detail'),
+    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
 ]
 
 if not settings.DEBUG:

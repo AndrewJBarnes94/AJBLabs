@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h1>{{ post.title }}</h1>
+    <div class="card-footer text-muted mb-3">
+        Posted on {{ post.date_published|date:"F d, Y" }} by {{ post.author }}
+    </div>
+    <p>{{ post.content }}</p>
+
+    <!-- You can add navigation links or a comments section here -->
+
+</div>
+{% endblock %}

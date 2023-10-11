@@ -1,8 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <!-- Your page-specific content goes here -->
-    <div class="container mt-5">
-        <p>This is about me.</p>
+<div class="container mt-5">
+
+    <div class="row">
+        <!-- Optional profile picture -->
+        <div class="col-md-4">
+            <img src="#" alt="Your Name" class="img-fluid rounded-circle mb-4">
+        </div>
+        
+        <!-- About Me Content -->
+        <div class="col-md-8">
+            <h1>About Me</h1>
+            <p>
+                Hi! I'm [Your Name], a passionate software developer based in [Your Location]. With over [X years] of experience in [specific field or languages, e.g., "web development using Django and React"], I love building intuitive, dynamic applications and websites.
+            </p>
+            <p>
+                I graduated from [Your University/College] with a degree in [Your Degree, e.g., "Computer Science"]. Since then, I've worked with companies such as [Company A] and [Company B], and I've been a part of projects like [Project X] and [Project Y].
+            </p>
+            <p>
+                When I'm not coding, you can find me [some personal hobbies or interests, e.g., "hiking in the mountains, reading sci-fi novels, or experimenting with photography"].
+            </p>
+            <p>Feel free to <a href="{% url 'contact_me' %}">reach out</a> if you'd like to connect!</p>
+        </div>
     </div>
+
+</div>
 {% endblock %}

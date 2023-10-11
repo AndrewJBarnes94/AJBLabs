@@ -2,15 +2,38 @@
 
 {% block content %}
 
-<!-- Your page-specific content goes here -->
-    <div class="container mt-5">
+<div class="container mt-5">
 
-        <p>This is my Blog.</p>
-
-        {% for post in posts %}
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content }}</p>
-        {% endfor %}
+    <!-- Blog header -->
+    <div class="text-center mb-5">
+        <h1>My Blog</h1>
+        <p>Discover my thoughts, tutorials, and insights.</p>
     </div>
+
+    <!-- Blog posts -->
+    {% for post in posts %}
+    <div class="card mb-4">
+        <!-- Uncomment below if you have featured images for posts -->
+        <!-- <img class="card-img-top" src="{{ post.featured_image }}" alt="{{ post.title }}"> -->
+        
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            
+            <!-- Display the first 200 characters of the post content, adjust as necessary -->
+            <p class="card-text">{{ post.content|slice:":200" }}...</p>
+            
+            <!-- Placeholder link for the detailed post page -->
+            <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">Read More</a>
+        </div>
+
+        <div class="card-footer text-muted">
+            Posted on {{ post.date_published|date:"F d, Y" }} by {{ post.author }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Pagination links can be added here if you have many posts -->
+
+</div>
 
 {% endblock %}

@@ -1,8 +1,64 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Your page-specific content goes here -->
+    <!-- Hero Section -->
     <div class="container mt-5">
-        <p>This is the home page.</p>
+        <div class="jumbotron text-center">
+            <h1>Welcome to AJBLabs!</h1>
+            <p>I'm Andrew J Barnes, a passionate programmer and computer scientist. Dive into my journey, projects, and thoughts here.</p>
+            <p>
+                <a href="{% url 'resume' %}" class="btn btn-primary btn-lg">View my Resume</a>
+                <a href="{% url 'blog' %}" class="btn btn-secondary btn-lg">Read my Blog</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Portfolio Preview -->
+    <div class="container mt-5">
+        <h2>Featured Projects</h2>
+        <div class="row">
+            {% for project in featured_projects %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ project.image_url }}" alt="{{ project.title }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.short_description }}</p>
+                        <a href="{% url 'project_detail' project.id %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Latest Blogs -->
+    <div class="container mt-5">
+        <h2>Latest Blogs</h2>
+        {% for post in latest_blogs %}
+        <div class="media mb-3">
+            <img src="{{ post.image_url }}" alt="{{ post.title }}" class="mr-3" style="width: 64px; height: 64px;">
+            <div class="media-body">
+                <h5 class="mt-0"><a href="{% url 'blog_post' post.id %}">{{ post.title }}</a></h5>
+                {{ post.short_description }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Contact/About Teaser -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>About Me</h3>
+                <p>Want to learn more about my journey and experiences? Dive deeper into my story and background.</p>
+                <a href="{% url 'about_me' %}" class="btn btn-light">Learn More</a>
+            </div>
+            <div class="col-md-6">
+                <h3>Contact</h3>
+                <p>Have questions or interested in collaborating? I'd love to hear from you!</p>
+                <a href="{% url 'contact_me' %}" class="btn btn-light">Get in Touch</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

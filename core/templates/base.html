@@ -52,8 +52,6 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="{% url 'resume' %}">Resume</a></li>
                       <li><a class="dropdown-item" href="{% url 'about_me' %}">About Me</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'contact_me' %}">Contact Me</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
@@ -71,21 +69,28 @@
                                 </ul>
                             </li>
                         {% endfor %}
-
-
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'ambitions' %}">Ambitions</a></li>
                     </ul>
                 </li>
-                
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'blog' %}">Blog</a>
               </li>
             </ul>
+
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_me' %}">Contact Me</a>
+            </li>
+          </ul>
+
+          <!--
+
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
+          -->
+          
           </div>
         </div>
       </nav>
@@ -97,22 +102,37 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.dropdown-menu a.dropdown-toggle').forEach(function(element) {
-        element.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+    const dropdownToggles = document.querySelectorAll('.dropdown-menu a.dropdown-toggle');
+    
+    dropdownToggles.forEach(function(element) {
+        let submenu = element.nextElementSibling;
 
-            let submenu = element.nextElementSibling;
-            if(submenu.classList.contains('show')) {
-                submenu.classList.remove('show');
-                element.classList.remove('active');
-            } else {
-                submenu.classList.add('show');
-                element.classList.add('active');
-            }
+        // Show this submenu and hide others on mouseenter
+        element.addEventListener('mouseenter', function(e) {
+            // First, hide all other submenus
+            dropdownToggles.forEach(function(otherElement) {
+                if (otherElement !== element) {
+                    otherElement.nextElementSibling.classList.remove('show');
+                    otherElement.classList.remove('active');
+                }
+            });
+
+            e.preventDefault();
+            submenu.classList.add('show');
+            element.classList.add('active');
+        });
+    });
+
+    // Attach mouseleave on the submenu to close it
+    document.querySelectorAll('.dropdown-menu .dropdown-menu').forEach(function(submenu) {
+        submenu.addEventListener('mouseleave', function(e) {
+            e.preventDefault();
+            submenu.classList.remove('show');
+            submenu.previousElementSibling.classList.remove('active');
         });
     });
 });
+
   </script>
   
 </html>
