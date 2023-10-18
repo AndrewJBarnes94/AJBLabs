@@ -1,11 +1,91 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<style>
+    /* Add global styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+  
+    /* Style the Hero Section */
+    .jumbotron {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 50px;
+      border-radius: 10px;
+    }
+  
+    .jumbotron h1 {
+      font-size: 36px;
+    }
+  
+    .jumbotron p {
+      font-size: 18px;
+    }
+  
+    .btn-primary {
+    background-color: #17a2b8; /* Gold */
+    border-color: #17a2b8;
+    font-weight: bold;
+    }
+
+    /* Prevent color change on hover for the "View Resume" button */
+    .btn-primary:hover {
+    background-color: #136c7a; /* Set the hover background color to the same as the default color */
+    border-color: #136c7a; /* Set the hover border color to the same as the default color */
+    color: #fff; /* Set the text color to white on hover */
+    }
+
+
+  
+    .btn-secondary {
+      background-color: #6c757d; /* Adjusted gray color */
+      border-color: #6c757d;
+      font-weight: bold;
+      color: #fff; /* Added white text color */
+    }
+  
+    /* Style the Portfolio Preview */
+    .card {
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    .card-title {
+      font-weight: bold;
+    }
+  
+    /* Style the Latest Blogs section */
+    .media {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+    }
+  
+    .media img {
+      border-radius: 50%;
+    }
+  
+    /* Style the Contact/About Teaser */
+    .col-md-6 {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 10px;
+    }
+  </style>
+  
+
     <!-- Hero Section -->
     <div class="container mt-5">
         <div class="jumbotron text-center">
             <h1>Welcome to AJBLabs!</h1>
-            <p>I'm AJ Barnes, a passionate programmer and computer scientist. Dive into my journey, projects, and thoughts here.</p>
+            <p>I'm AJ Barnes, a passionate programmer and computer scientist. Dive into my journey, projects, and articles here.</p>
             <p>
                 <a href="{% url 'resume' %}" class="btn btn-primary btn-lg">View Resume</a>
                 <a href="{% url 'articles' %}" class="btn btn-secondary btn-lg">Read Articles</a>
@@ -52,12 +132,12 @@
             <div class="col-md-6">
                 <h3>About Me</h3>
                 <p>Want to learn more about my journey and experiences? Dive deeper into my story and background.</p>
-                <a href="{% url 'about_me' %}" class="btn btn-light">Learn More</a>
+                <a href="{% url 'about_me' %}" class="btn btn-secondary btn-lg">Learn More</a>
             </div>
             <div class="col-md-6">
                 <h3>Contact</h3>
                 <p>Have questions or interested in collaborating? I'd love to hear from you!</p>
-                <a href="{% url 'contact_me' %}" class="btn btn-light">Get in Touch</a>
+                <a href="{% url 'contact_me' %}" class="btn btn-secondary btn-lg">Get in Touch</a>
             </div>
         </div>
     </div>
