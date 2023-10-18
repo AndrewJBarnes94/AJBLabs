@@ -17,9 +17,9 @@ class PostDetailView(DetailView):
 def home(requests):
     return render(requests, 'home.html', {})
 
-def blog(request, pk=None):
+def articles(request, pk=None):
     posts = Post.objects.all()
-    return render(request, 'blog.html', {'posts': posts})
+    return render(request, 'articles.html', {'posts': posts})
 
 def resume(requests):
     return render(requests, "resume.html", {})

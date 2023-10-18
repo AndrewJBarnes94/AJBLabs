@@ -5,10 +5,10 @@
     <div class="container mt-5">
         <div class="jumbotron text-center">
             <h1>Welcome to AJBLabs!</h1>
-            <p>I'm Andrew J Barnes, a passionate programmer and computer scientist. Dive into my journey, projects, and thoughts here.</p>
+            <p>I'm AJ Barnes, a passionate programmer and computer scientist. Dive into my journey, projects, and thoughts here.</p>
             <p>
-                <a href="{% url 'resume' %}" class="btn btn-primary btn-lg">View my Resume</a>
-                <a href="{% url 'blog' %}" class="btn btn-secondary btn-lg">Read my Blog</a>
+                <a href="{% url 'resume' %}" class="btn btn-primary btn-lg">View Resume</a>
+                <a href="{% url 'articles' %}" class="btn btn-secondary btn-lg">Read Articles</a>
             </p>
         </div>
     </div>
@@ -34,7 +34,7 @@
 
     <!-- Latest Blogs -->
     <div class="container mt-5">
-        <h2>Latest Blogs</h2>
+        <h2>Latest Articles</h2>
         {% for post in latest_blogs %}
         <div class="media mb-3">
             <img src="{{ post.image_url }}" alt="{{ post.title }}" class="mr-3" style="width: 64px; height: 64px;">
