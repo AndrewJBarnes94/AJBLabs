@@ -2,17 +2,26 @@
 
 {% block content %}
 
+<style>
+    /* Custom CSS for the card */
+    .custom-card {
+      background-color: #232f42; /* Dark blue color */
+      color: #fff; /* Text color on the card */
+    }
+</style>
+  
+
 <div class="container mt-5">
 
     <!-- Blog header -->
     <div class="text-center mb-5">
-        <h1>My Blog</h1>
+        <h1>Articles</h1>
         <p>Discover my thoughts, tutorials, and insights.</p>
     </div>
 
     <!-- Blog posts -->
     {% for post in posts %}
-    <div class="card mb-4">
+    <div class="card mb-4 custom-card">
         <!-- Uncomment below if you have featured images for posts -->
         <!-- <img class="card-img-top" src="{{ post.featured_image }}" alt="{{ post.title }}"> -->
         
@@ -20,7 +29,8 @@
             <h2 class="card-title">{{ post.title }}</h2>
             
             <!-- Display the first 200 characters of the post content, adjust as necessary -->
-            <p class="card-text">{{ post.content|slice:":200" }}...</p>
+            <p class="card-text">{{ post.content|safe|linebreaks|slice:":200" }}...</p>
+            
             
             <!-- Placeholder link for the detailed post page -->
             <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">Read More</a>

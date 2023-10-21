@@ -3,8 +3,14 @@ from .models import Post, ProjectField, Project
 from django.views.generic import DetailView
 from .forms import ContactForm
 
+def project_fields(request, field):
+    project_field = ProjectField.objects.get(field=field)
 
-# Create your views here.
+    projects = Project.objects.filter(project_field=project_field)
+
+    return render(request, 'project_fields.html', {'projects': projects, 'project_field': project_field})
+
+
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'project_detail.html', {'project': project})

@@ -26,6 +26,7 @@ urlpatterns = [
     path('resume/', views.resume, name='resume'),
     path('about-me/', views.about_me, name='about_me'),
     path('contact_me/', views.contact_me, name='contact_me'),
+    path('project-fields/<str:field>/', views.project_fields, name='project_fields'),
     path('project/<int:project_id>/', views.project_detail, name='project_detail'),
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
 ]

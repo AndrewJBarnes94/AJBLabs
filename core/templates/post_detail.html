@@ -7,7 +7,7 @@
     <div class="card-footer text-muted mb-3">
         Posted on {{ post.date_published|date:"F d, Y" }} by {{ post.author }}
     </div>
-    <p>{{ post.content }}</p>
+    <p>{{ post.content|safe|linebreaks }}</p>
 
     <!-- You can add navigation links or a comments section here -->
 

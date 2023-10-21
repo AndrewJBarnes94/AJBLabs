@@ -25,46 +25,60 @@
     <style>
       /* Global Styles */
       body {
-        background-color: #f5f5f5;
-        font-family: Arial, sans-serif;
-      }
-    
+    font-family: 'Arial', sans-serif;
+    background-color: #bfbdbd; /* Lightened background for softer contrast */
+    color: #333;
+    line-height: 1.6; /* Improved line spacing */
+    }
+      /* Button Styles */
+    .btn-primary {
+      background-color: #225ea8; /* More of a deep blue */
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4d8b; /* Darker shade on hover */
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a636e; /* Darker shade on hover */
+      color: #fff;
+    }
+
       /* Navbar Styles */
       .navbar {
-        background-color: #007bff;
+        background-color: #232f42;
       }
-    
+
       .navbar-brand {
         color: #fff;
         font-weight: bold;
       }
-    
+
       .navbar-nav .nav-link {
-        color: #333;
+        color: #ffffff;
       }
-    
+
       .navbar-toggler-icon {
         background-color: #fff;
       }
-    
-      /* Dropdown Submenu Styles */
-      .dropdown-submenu {
-        position: relative;
-      }
-    
-      .dropdown-submenu .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-left: 0.1rem;
-        margin-right: 0.1rem;
-        border-left: 4px solid #007bff;
-      }
-    
-      /* Add any additional styles you need below */
-    </style>
+
+</style>
     
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}">AJBLabs</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,27 +91,23 @@
                       AJ Barnes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="{% url 'resume' %}">Resume</a></li>
-                      <li><a class="dropdown-item" href="{% url 'about_me' %}">About Me</a></li>
+                      <li><a class="dropdown-item navbar-secondary" href="{% url 'resume' %}">Resume</a></li>
+                      <li><a class="dropdown-item navbar-secondary" href="{% url 'about_me' %}">About Me</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Portfolio
+                    <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Projects
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="portfolioDropdown">
                         {% for project_field in project_fields %}
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#">{{ project_field.field }}</a>
-                                <ul class="dropdown-menu">
-                                    {% for project in project_field.project_set.all %}
-                                    <li><a class="dropdown-item" href="{% url 'project_detail' project.id %}">{{ project.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                            <li>
+                                <!-- I assume you'll have a URL pattern to list projects by field. Update 'list_projects_by_field' accordingly -->
+                                <a class="dropdown-item navbar-secondary" href="{% url 'project_fields' field=project_field.field %}">{{ project_field.field }}</a>
                             </li>
                         {% endfor %}
                     </ul>
-                </li>
+                </li>>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'articles' %}">Articles</a>
               </li>
@@ -126,40 +136,5 @@
     {% endblock %}
 
   </body>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const dropdownToggles = document.querySelectorAll('.dropdown-menu a.dropdown-toggle');
-    
-    dropdownToggles.forEach(function(element) {
-        let submenu = element.nextElementSibling;
-
-        // Show this submenu and hide others on mouseenter
-        element.addEventListener('mouseenter', function(e) {
-            // First, hide all other submenus
-            dropdownToggles.forEach(function(otherElement) {
-                if (otherElement !== element) {
-                    otherElement.nextElementSibling.classList.remove('show');
-                    otherElement.classList.remove('active');
-                }
-            });
-
-            e.preventDefault();
-            submenu.classList.add('show');
-            element.classList.add('active');
-        });
-    });
-
-    // Attach mouseleave on the submenu to close it
-    document.querySelectorAll('.dropdown-menu .dropdown-menu').forEach(function(submenu) {
-        submenu.addEventListener('mouseleave', function(e) {
-            e.preventDefault();
-            submenu.classList.remove('show');
-            submenu.previousElementSibling.classList.remove('active');
-        });
-    });
-});
-
-  </script>
   
 </html>

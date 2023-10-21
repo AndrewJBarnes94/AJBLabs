@@ -1,7 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
+
+<style>
+      /* Contact Section */
+  .contact {
+    background-color: #232f42; /* Use the same background color as your home page */
+    color: #fff;
+    padding: 40px 30px; /* Adjust padding as needed */
+    border-radius: 12px; /* Slightly increased for a more modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+  }
+
+  .contact h1 {
+    font-size: 40px; /* Made slightly larger for emphasis */
+    margin-bottom: 20px; /* Added space for visual separation */
+  }
+
+  .contact p {
+    font-size: 19px; /* Small increase for readability */
+    color: #fff; /* Text color */
+  }
+
+  .contact .form-group {
+    margin-bottom: 20px; /* Added space between form groups */
+  }
+</style>
+
+<div class="container mt-5 contact">
     <h1>Contact</h1>
     <p>Have questions or feedback? Drop me a message below!</p>
     
