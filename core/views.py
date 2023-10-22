@@ -51,7 +51,7 @@ def contact_me(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['andrewjbarnes94@gmail.com']
+            recipient_list = ['ajbarnes@ajblabs.com']
 
             send_mail(subject, message, from_email, recipient_list)
             
