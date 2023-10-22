@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p3eue)3n$uwys+7fbkzk)pzh8ac2ce5#_fp7hsg&la*)l@5444
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'localhost', 'ajblabs.com']
 
 # Application definition
 
@@ -143,3 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WHITENOISE_USE_FINDERS = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'andrewjbarnes94@gmail.com'  # Your Gmail address.
+EMAIL_HOST_PASSWORD = 'Qwertyuiop1313'     # Your Gmail password or App Password.

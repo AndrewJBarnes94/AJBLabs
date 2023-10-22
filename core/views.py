@@ -3,6 +3,9 @@ from .models import Post, ProjectField, Project
 from django.views.generic import DetailView
 from .forms import ContactForm
 import requests
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 def project_fields(request, field):
     project_field = ProjectField.objects.get(field=field)
@@ -40,14 +43,20 @@ def resume(requests):
 def about_me(requests):
     return render(requests, "about_me.html", {})
 
-def contact_me(requests):
-    if requests.method == 'POST':
-        form = ContactForm(requests.POST)
+def contact_me(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
         if form.is_valid():
-            # Here you can save the message to the database or send an email.
-            # For this example, we'll just print it to the console.
-            print(f"Message from {form.cleaned_data['name']} ({form.cleaned_data['email']}): {form.cleaned_data['message']}")
-            return redirect('home')  # Redirect to the homepage after submitting. Adjust as needed.
+            # Send email
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['email']
+            recipient_list = ['andrewjbarnes94@gmail.com']
+
+            send_mail(subject, message, from_email, recipient_list)
+            
+            messages.success(request, 'Thank you for your message. We will get back to you shortly.')
+            return redirect('contact_page')  # Redirect back to contact page after sending email
     else:
         form = ContactForm()
-    return render(requests, 'contact_me.html', {'form': form})
+    return render(request, 'contact_me.html', {'form': form})
