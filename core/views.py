@@ -65,7 +65,7 @@ def contact_me(request):
         )
             
         messages.success(request, 'Thank you for your message! I will get back to you shortly.')
-        return redirect('contact_page')  # Redirect back to contact page after sending email
+        return redirect('contact_me')  # Redirect back to contact page after sending email
     else:
         form = ContactForm()
     return render(request, 'contact_me.html', {'form': form})
