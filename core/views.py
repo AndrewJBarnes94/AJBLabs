@@ -44,19 +44,28 @@ def about_me(requests):
     return render(requests, "about_me.html", {})
 
 def contact_me(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # Send email
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            from_email = form.cleaned_data['email']
-            recipient_list = ['ajbarnes@ajblabs.com']
-
-            send_mail(subject, message, from_email, recipient_list)
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        print(name, email, message)
+        
+        subject = "Contact Page Response"
+        ajblabs_email = "ajbarnes@ajblabs.com"
+        sender_email = "ajbarnes@ajblabs.com"  # Replace with a valid sender email associated with your domain
+        recipient_email = [ajblabs_email]
+        message_with_sender = f"Sender: {email}\n\n{message}"  # Include sender's email in the message body
+        
+        send_mail(
+            subject,
+            message_with_sender,
+            sender_email,
+            recipient_email,
+            fail_silently=False
+        )
             
-            messages.success(request, 'Thank you for your message. We will get back to you shortly.')
-            return redirect('contact_page')  # Redirect back to contact page after sending email
+        messages.success(request, 'Thank you for your message! I will get back to you shortly.')
+        return redirect('contact_page')  # Redirect back to contact page after sending email
     else:
         form = ContactForm()
     return render(request, 'contact_me.html', {'form': form})
