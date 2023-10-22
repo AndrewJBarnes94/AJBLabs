@@ -1,17 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1>{{ project.title }}</h1>
-        
-        <h3>Field: {{ project.project_field.field }}</h3> <!-- Display the related ProjectField -->
 
-        <div class="project-content">
-            <!-- You can add more details, images, or anything related to the project here -->
-        </div>
+<div class="container">
 
-        <div class="project-download">
-            <a href="{{ project.code_download_url }}" download>Download {{ project.title }} Code</a>
-        </div>
+    <br><br><br>
+
+    <center>
+        <h1>{{ context.project.title }}</h1>
+    </center>
+
+    <div class="project-content">
+        <!-- Display the server-fetched code content here -->
+        <pre><code class="cpp">{{ context.code_content }}</code></pre>
     </div>
+
+</div>
+
+<!-- Highlight.js library and styles -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        // Apply syntax highlighting on DOM loaded
+        hljs.highlightAll();
+    });
+</script>
+
 {% endblock %}

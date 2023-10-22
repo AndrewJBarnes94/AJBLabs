@@ -2,18 +2,26 @@
 
 {% block content %}
 
-    <h1>Projects under: {{ project_field.field }}</h1>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h1 class="display-4 mb-4 text-center">{{ project_field.field }}</h1>
 
-    {% if projects %}
-        <ul>
-            {% for project in projects %}
-                <li>
-                    <a href="{% url 'project_detail' project_id=project.id %}">{{ project.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No projects available under this field.</p>
-    {% endif %}
+            {% if projects %}
+                <div class="list-group">
+                    {% for project in projects %}
+                        <a href="{% url 'project_detail' project_id=project.id %}" class="list-group-item list-group-item-action">
+                            {{ project.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-warning text-center" role="alert">
+                    No projects available under this field.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

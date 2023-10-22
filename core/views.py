@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, ProjectField, Project
 from django.views.generic import DetailView
 from .forms import ContactForm
+import requests
 
 def project_fields(request, field):
     project_field = ProjectField.objects.get(field=field)
@@ -13,7 +14,13 @@ def project_fields(request, field):
 
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
-    return render(request, 'project_detail.html', {'project': project})
+    code_content = requests.get(project.code_download_url).text
+    context = {
+        'project': project,
+        'code_content': code_content,
+    }
+
+    return render(request, 'project_detail.html', {'context': context})
 
 class PostDetailView(DetailView):
     model = Post
