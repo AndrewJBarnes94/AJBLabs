@@ -83,7 +83,9 @@
   color: #ffffff;
 }
 .image-section {
-  background-color: transparent; /* Set the background to transparent */
+  background-color: transparent; 
+  box-shadow: 0 4px 6px #bfbdbd;
+  border-radius: 8px;
 }
 
   </style>
@@ -93,7 +95,7 @@
     <div class="container mt-5">
         <div class="jumbotron text-center">
             <h1>Welcome to AJBLabs!</h1>
-            <p>I'm AJ Barnes, a passionate programmer and enthusiastic Computer Science student. Dive into my journey, projects, and articles here.</p>
+            <p>I'm AJ Barnes, an aspiring programmer and enthusiastic Computer Science student. Dive into my journey, projects, and articles here.</p>
             <p>
                 <a href="{% url 'resume' %}" class="btn btn-primary btn-lg">View Resume</a>
                 <a href="{% url 'articles' %}" class="btn btn-secondary btn-lg">Read Articles</a>
