@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.biz_home, name='biz_home'),
+    path('genaius/', views.genaius, name='genaius'),
 ]
 
 if not settings.DEBUG:
