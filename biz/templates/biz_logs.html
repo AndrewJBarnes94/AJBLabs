@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davinci002 Query Logs</title>
+</head>
+<body>
+    <a href="{% url 'genaius' %}">List Generator</a>
+    <h1>Query Logs</h1>
+    <ul>
+    {% for record in records %}
+        <li>
+            {{ forloop.counter }}<br>
+            <strong>Pre-prompt:</strong> {{ record.pre_prompt }} <br>
+            <strong>Prompt:</strong> {{ record.prompt }} <br>
+            <strong>Post-prompt:</strong> {{ record.post_prompt }} <br>
+            <strong>Response:</strong> {{ record.response }} <br>
+            <strong>Date Published:</strong> {{ record.date_published }} <br>
+        </li><br>
+    {% endfor %}
+    </ul>
+    
+</body>
+</html>

@@ -25,6 +25,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <a href="{% url 'biz_logs' %}">Logs</a>
                 <h2 class="text-center">List Generator</h2>
                 <form method="post">
                     {% csrf_token %}
@@ -38,7 +39,7 @@
             </div>
         </div>
     </div>
-
+    
 </body>
 
 {% if prompt_input %}

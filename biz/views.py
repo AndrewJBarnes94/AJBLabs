@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import specialists
+from .models import Davinci002_Query_Log
 
 # Create your views here.
 def biz_home(request):
@@ -22,6 +23,15 @@ def genaius(request):
         # Fetch the response from ChatGPT based on the structured query
         response = chatbot.fetch_response(query)
 
+        # Save to Davinci002_Query_Log
+        log_entry = Davinci002_Query_Log(
+            pre_prompt=pre_prompt,
+            prompt=prompt_input,
+            post_prompt=post_prompt,
+            response=response,
+        )
+        log_entry.save()
+
         return render(
             request,
             'genaius.html', 
@@ -33,5 +43,8 @@ def genaius(request):
                 "response": response,
             }
         )
-
     return render(request, 'genaius.html', {})
+
+def biz_logs(request):
+    all_records = Davinci002_Query_Log.objects.all()
+    return render(request, 'biz_logs.html', {'records': all_records, 'count': 0})
